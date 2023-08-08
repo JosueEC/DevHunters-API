@@ -1,0 +1,45 @@
+{
+  "name": "devhunters-api",
+  "version": "1.0.0",
+  "description": "API-REST service por the DevHunters web aplication",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/app.ts"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "typescript",
+    "mongoose",
+    "mongodb",
+    "api",
+    "api-rest",
+    "mvc"
+  ],
+  "author": "Josue Evangelista Cruz",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/mongoose": "^5.11.97",
+    "standard": "^17.1.0",
+    "ts-standard": "^12.0.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/ts-standard/eslintrc.json",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  }
+}
