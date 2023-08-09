@@ -4,7 +4,7 @@
   "description": "API-REST service por the DevHunters web aplication",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/app.ts"
+    "dev": "nodemon index.ts"
   },
   "keywords": [
     "nodejs",
