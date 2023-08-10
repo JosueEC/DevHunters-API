@@ -23,7 +23,10 @@ const UserSchema = new Schema <User>(
       type: String,
       trim: true,
       required: [true, 'La contraseña es requerida'],
-      enum: ['admin', 'professional', 'company']
+      enum: {
+        values: ['admin', 'professional', 'company'],
+        message: 'El rol de usuario es invalido'
+      }
     },
     name: {
       type: String,
