@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 
+import authRouter from './User/routes/auth.router'
 import userRouter from './User/routes/user.router'
 
 const server = express()
@@ -13,6 +14,7 @@ server.use(cors({
 server.use(express.json())
 server.use(morgan('dev'))
 
+server.use('/auth', authRouter)
 server.use('/user', userRouter)
 
 server.use('*', (_req: Request, res: Response) => {
