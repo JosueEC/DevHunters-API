@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose'
 import { User } from '../interfaces/user.interface'
+import uniqueValidator from 'mongoose-unique-validator'
 
 function validatePassword (password: string): boolean {
   return password.length >= 6
@@ -51,6 +52,8 @@ const UserSchema = new Schema <User>(
   }
 )
 
-const UserModel = model('users', UserSchema)
+UserSchema.plugin(uniqueValidator, { message: 'El correo ya esta en uso' })
+
+const UserModel = model <User>('users', UserSchema)
 
 export default UserModel

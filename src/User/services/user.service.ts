@@ -18,8 +18,26 @@ const findUserByID = async (id: string): Promise <User> => {
   return response
 }
 
+const updateUser = async (id: string, item: User): Promise <User> => {
+  const response = await UserModel.findByIdAndUpdate(
+    { _id: id }, item, { new: true }
+  )
+
+  if (response == null) throw new Error('USER_NOT_FOUND')
+  return response
+}
+
+const removeUser = async (id: string): Promise <User> => {
+  const response = await UserModel.findOneAndRemove({ _id: id })
+
+  if (response == null) throw new Error('NOT_FOUND')
+  return response
+}
+
 export {
   insertUser,
   findUsers,
-  findUserByID
+  findUserByID,
+  updateUser,
+  removeUser
 }

@@ -1,9 +1,9 @@
 import { Response } from 'express'
 
-const httpError = (res: Response, statusCode: number, message: string, errorRaw?: any): void => {
+const httpError = (res: Response, statusCode: number, error: string, errorRaw?: any): void => {
   res.status(statusCode).send({
-    message,
-    error: errorRaw
+    error,
+    errors: errorRaw
   })
 }
 
