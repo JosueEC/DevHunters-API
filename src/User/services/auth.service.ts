@@ -1,6 +1,9 @@
 import { User } from '../interfaces/user.interface'
-import { encrypt } from '../helpers/bcrypt.helper'
+import { Auth } from '../interfaces/auth.interface'
+import { Session } from '../interfaces/session.interface'
+import { encrypt, verified } from '../helpers/bcrypt.helper'
 import UserModel from '../models/user.model'
+import { generateToken } from '../helpers/jwt.helper'
 
 const registerUser = async ({ name, role, email, password }: User): Promise <User> => {
   const user = await UserModel.findOne({ email })
@@ -18,8 +21,24 @@ const registerUser = async ({ name, role, email, password }: User): Promise <Use
   return response
 }
 
-const loginUser = (): void => {
+const loginUser = async ({ email, password }: Auth): Promise<Session> => {
+  const user = await UserModel.findOne({ email })
 
+  if (user == null) throw new Error('USER_NOT_FOUND')
+
+  const hashPassword = user.password
+  const isCorrect = await verified(password, hashPassword)
+
+  if (!isCorrect) throw new Error('INVALID_CREDENTIALS')
+
+  const token = generateToken(user.email)
+
+  const userSession = {
+    token,
+    user
+  }
+
+  return userSession
 }
 
 export {
